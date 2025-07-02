@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Mágico de Harry Potter</title>
+    <link rel="shortcut icon" href="https://via.placeholder.com/32x32?text=HP" type="image/x-icon"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --cor-cabecalho: #4B0082; /* Roxo escuro */
+            --cor-texto-cabecalho: #FFD700; /* Dourado */
+            --cor-fundo-principal: #F8F8F8; /* Cinza claro */
+            --cor-sombra: rgba(0, 0, 0, 0.2);
+            --cor-rodape-fundo: #1C1C1C; /* Preto quase */
+            --cor-rodape-texto: #D3D3D3; /* Cinza claro */
+            --cor-card-fundo: #ffffff; /* Branco para cards */
+            --cor-borda-card: #dcdcdc; /* Cinza claro para borda do card */
+            --cor-link-secundario: #6A5ACD; /* Roxo médio */
+
+            /* Cores do menu */
+            --cor-menu-fundo: #2A004D; /* Um roxo mais escuro que o cabeçalho */
+            --cor-menu-link: #FFD700; /* Dourado */
+            --cor-menu-link-hover: #FFFFFF; /* Branco ao passar o mouse */
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo-principal);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--cor-cabecalho);
+            color: var(--cor-texto-cabecalho);
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 4px 8px var(--cor-sombra);
+        }
+
+        header h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Estilos do Menu de Navegação */
+        nav {
+            background-color: var(--cor-menu-fundo);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 25px;
+            color: var(--cor-menu-link);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--cor-cabecalho);
+            color: var(--cor-menu-link-hover);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .secao {
+            background-color: var(--cor-card-fundo);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--cor-sombra);
+            border: 1px solid var(--cor-borda-card);
+        }
+
+        .secao h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.2rem;
+            color: var(--cor-cabecalho);
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--cor-texto-cabecalho);
+            padding-bottom: 10px;
+        }
+
+        .secao p {
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* Estilos específicos para a seção "Mapa" */
+        .mapa-hogwarts {
+            text-align: center;
+        }
+
+        .mapa-hogwarts img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px var(--cor-sombra);
+            margin-top: 20px;
+        }
+
+        /* Estilos para a seção "Personagens" */
+        .personagens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .personagem-card {
+            background-color: #fff;
+            border: 1px solid var(--cor-borda-card);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .personagem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .personagem-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--cor-borda-card);
+        }
+
+        .personagem-info {
+            padding: 15px;
+        }
+
+        .personagem-info h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5rem;
+            color: var(--cor-cabecalho);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .personagem-info p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        /* Estilos para a seção "Quiz" */
+        .quiz-section {
+            text-align: center;
+        }
+        .quiz-section .quiz-box {
+            background-color: #f0f8ff; /* Alice Blue */
+            border: 1px solid var(--cor-borda-card);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-box h3 {
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--cor-cabecalho);
+            margin-bottom: 20px;
+        }
+        .quiz-box button {
+            background-color: var(--cor-link-secundario);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .quiz-box button:hover {
+            background-color: #5348a8; /* Um tom mais escuro do roxo */
+            transform: translateY(-2px);
+        }
+
+        /* Estilos para a seção "Varinhas Mágicas" */
+        .varinhas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .varinha-card {
+            background-color: #fff;
+            border: 1px solid var(--cor-borda-card);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .varinha-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .varinha-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--cor-borda-card);
+        }
+        .varinha-info {
+            padding: 15px;
+        }
+        .varinha-info h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.4rem;
+            color: var(--cor-cabecalho);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .varinha-info p {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        footer {
+            background-color: var(--cor-rodape-fundo);
+            color: var(--cor-rodape-texto);
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .secao h2 {
+                font-size: 1.8rem;
+            }
+            .personagens-grid, .varinhas-grid {
+                grid-template-columns: 1fr;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li a {
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .secao {
+                padding: 20px;
+            }
+            .secao h2 {
+                font-size: 1.5rem;
+            }
+            .personagem-info h3, .varinha-info h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mundo Mágico de Harry Potter</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home" class="active"><i class="fas fa-home"></i> Início</a></li>
+            <li><a href="#mapa"><i class="fas fa-map-marked-alt"></i> Mapa</a></li>
+            <li><a href="#personagens"><i class="fas fa-users"></i> Personagens</a></li>
+            <li><a href="#varinhas"><i class="fas fa-magic"></i> Varinhas Mágicas</a></li>
+            <li><a href="#quiz"><i class="fas fa-question-circle"></i> Quiz</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section id="home" class="secao">
+            <h2>Bem-vindo ao Mundo Bruxo!</h2>
+            <p>
+                Explore o fascinante universo de Harry Potter, uma saga que cativou milhões de fãs ao redor do mundo. Aqui você encontrará informações sobre os personagens, o misterioso Mapa do Maroto, os segredos das varinhas mágicas e poderá testar seus conhecimentos com nosso quiz exclusivo. Prepare-se para uma jornada mágica!
+            </p>
+            <p>
+                Acompanhe a história de Harry, Hermione e Ron em suas aventuras pela Escola de Magia e Bruxaria de Hogwarts, desvendando mistérios e enfrentando as forças das trevas. Este site é um tributo a essa incrível jornada.
+            </p>
+        </section>
+
+        <section id="mapa" class="secao mapa-hogwarts">
+            <h2><i class="fas fa-map-marked-alt"></i> O Mapa do Maroto</h2>
+            <p>
+                O Mapa do Maroto é um artefato mágico que revela todos os segredos do Castelo de Hogwarts e seus terrenos, incluindo a localização de cada pessoa dentro dele. Criado por Aluado (Remo Lupin), Rabicho (Pedro Pettigrew), Almofadinhas (Sirius Black) e Pontas (Tiago Potter), é uma ferramenta indispensável para qualquer travesso.
+            </p>
+            <img src="https://via.placeholder.com/800x450?text=Mapa+do+Maroto" alt="Mapa do Maroto aberto" title="Eu juro solenemente não fazer nada de bom.">
+            <p>
+                Para ativar o mapa, basta tocar nele com a varinha e dizer "Eu juro solenemente não fazer nada de bom". Para escondê-lo novamente, diga "Malfeito feito".
+            </p>
+        </section>
+
+        <section id="personagens" class="secao">
+            <h2><i class="fas fa-users"></i> Personagens Principais</h2>
+            <div class="personagens-grid">
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Harry+Potter" alt="Harry Potter">
+                    <div class="personagem-info">
+                        <h3>Harry Potter</h3>
+                        <p>O "Menino Que Sobreviveu", protagonista da saga, conhecido por sua bravura e a cicatriz em forma de raio.</p>
+                    </div>
+                </div>
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Hermione+Granger" alt="Hermione Granger">
+                    <div class="personagem-info">
+                        <h3>Hermione Granger</h3>
+                        <p>A bruxa mais brilhante de sua idade, leal e com uma sede insaciável por conhecimento.</p>
+                    </div>
+                </div>
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Ron+Weasley" alt="Ron Weasley">
+                    <div class="personagem-info">
+                        <h3>Ron Weasley</h3>
+                        <p>O melhor amigo de Harry, conhecido por seu bom humor, lealdade e família bruxa tradicional.</p>
+                    </div>
+                </div>
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Alvo+Dumbledore" alt="Alvo Dumbledore">
+                    <div class="personagem-info">
+                        <h3>Alvo Dumbledore</h3>
+                        <p>Diretor de Hogwarts e um dos bruxos mais poderosos e sábios de todos os tempos.</p>
+                    </div>
+                </div>
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Severo+Snape" alt="Severo Snape">
+                    <div class="personagem-info">
+                        <h3>Severo Snape</h3>
+                        <p>Mestre de Poções de lealdade complexa, com um papel crucial e misterioso na saga.</p>
+                    </div>
+                </div>
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Lord+Voldemort" alt="Lord Voldemort">
+                    <div class="personagem-info">
+                        <h3>Lord Voldemort</h3>
+                        <p>O maior bruxo das trevas, que buscou a imortalidade e causou a morte dos pais de Harry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="varinhas" class="secao">
+            <h2><i class="fas fa-magic"></i> As Varinhas Mágicas</h2>
+            <p>
+                No mundo bruxo, a varinha escolhe o bruxo. Cada varinha é única, composta por um tipo de madeira e um núcleo mágico, refletindo a personalidade e o destino de seu dono.
+            </p>
+            <div class="varinhas-grid">
+                <div class="varinha-card">
+                    <img src="https://via.placeholder.com/250x200?text=Varinha+Harry" alt="Varinha de Harry Potter">
+                    <div class="varinha-info">
+                        <h3>Varinha de Harry Potter</h3>
+                        <p>Azevinho e pena de fênix, 28 cm. Irmã da varinha de Lord Voldemort, crucial na história.</p>
+                    </div>
+                </div>
+                <div class="varinha-card">
+                    <img src="https://via.placeholder.com/250x200?text=Varinha+Dumbledore" alt="Varinha de Alvo Dumbledore">
+                    <div class="varinha-info">
+                        <h3>Varinha das Varinhas</h3>
+                        <p>A mais poderosa varinha do mundo, uma das Relíquias da Morte, pertencente a Dumbledore e depois a Harry.</p>
+                    </div>
+                </div>
+                <div class="varinha-card">
+                    <img src="https://via.placeholder.com/250x200?text=Varinha+Hermione" alt="Varinha de Hermione Granger">
+                    <div class="varinha-info">
+                        <h3>Varinha de Hermione Granger</h3>
+                        <p>Videira e fibra de coração de dragão, 27,3 cm. Perfeita para sua inteligência e feitiços precisos.</p>
+                    </div>
+                </div>
+                <div class="varinha-card">
+                    <img src="https://via.placeholder.com/250x200?text=Varinha+Voldemort" alt="Varinha de Lord Voldemort">
+                    <div class="varinha-info">
+                        <h3>Varinha de Lord Voldemort</h3>
+                        <p>Teixo e pena de fênix, 34 cm. Também contém uma pena da mesma fênix da varinha de Harry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="secao quiz-section">
+            <h2><i class="fas fa-question-circle"></i> Quiz - Qual é sua casa?</h2>
+            <p>
+                Descubra a qual casa de Hogwarts você realmente pertence! Responda às perguntas e deixe a magia do Chapéu Seletor guiá-lo.
+            </p>
+            <div class="quiz-box">
+                <h3>Preparado para ser selecionado?</h3>
+                <p>Clique no botão abaixo para começar seu teste e descobrir se você é Grifinório, Sonserino, Corvinal ou Lufa-Lufa!</p>
+                <button onclick="alert('Funcionalidade do quiz em desenvolvimento! Em breve você poderá descobrir sua casa.')">Começar Quiz</button>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #777;">(A lógica do quiz requer JavaScript, que pode ser adicionado posteriormente para torná-lo interativo.)</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Página criada por Renan &copy; 2025</p>
+    </footer>
+
+    <script>
+        // JavaScript para rolagem suave ao clicar nos links do menu
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Remover 'active' de todos e adicionar ao clicado
+                document.querySelectorAll('nav ul li a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Opcional: Marcar o link do menu como ativo ao rolar a página
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 100; // Ajuste para o offset do sticky header/nav
+                const sectionId = current.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelector('nav ul li a[href*=' + sectionId + ']').classList.add('active');
+                } else {
+                    document.querySelector('nav ul li a[href*=' + sectionId + ']').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

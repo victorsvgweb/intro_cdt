@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter - O Mundo Mágico</title>
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Harry_Potter_wordmark.svg/1200px-Harry_Potter_wordmark.svg.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Variáveis CSS para facilitar a manutenção das cores */
+        :root {
+            --cor-cabecalho-fundo: #4B0082; /* Roxo escuro para o cabeçalho */
+            --cor-texto-dourado: #FFD700; /* Dourado */
+            --cor-fundo-principal: #F8F8F8; /* Cinza claro para o fundo geral */
+            --cor-secao-bem-vindo-fundo: #2C2C2C; /* Quase preto para a seção de boas-vindas */
+            --cor-rodape-fundo: #1C1C1C; /* Preto para o rodapé */
+            --cor-rodape-texto: #D3D3D3; /* Cinza claro para o texto do rodapé */
+            --cor-sombra: rgba(0, 0, 0, 0.4); /* Sombra para elementos */
+        }
+
+        body {
+            font-family: 'Merriweather', serif; /* Fonte principal do corpo do texto */
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo-principal);
+            color: #333; /* Cor de texto padrão */
+            line-height: 1.6;
+        }
+
+        /* Estilos do Cabeçalho */
+        header {
+            background-color: var(--cor-cabecalho-fundo);
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 10px var(--cor-sombra);
+        }
+
+        header img {
+            max-width: 80%; /* Ajusta o tamanho da imagem de Hogwarts */
+            height: auto;
+            border-radius: 10px; /* Bordas arredondadas para a imagem */
+            box-shadow: 0 5px 15px var(--cor-sombra);
+            margin-bottom: 20px;
+        }
+
+        /* Estilos do Menu de Navegação */
+        nav {
+            background-color: var(--cor-cabecalho-fundo); /* Mesma cor do cabeçalho */
+            padding: 15px 0;
+            box-shadow: 0 2px 8px var(--cor-sombra);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas pequenas */
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 12px 25px;
+            color: var(--cor-texto-dourado);
+            text-decoration: none;
+            font-family: 'Cinzel Decorative', serif; /* Fonte para os itens do menu */
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #6A0DAD; /* Um roxo ligeiramente mais claro no hover */
+            color: var(--cor-fundo-principal); /* Texto claro no hover */
+        }
+
+        /* Estilos da Seção de Boas-Vindas */
+        .welcome-section {
+            background-color: var(--cor-secao-bem-vindo-fundo);
+            color: var(--cor-texto-dourado);
+            text-align: center;
+            padding: 50px 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px var(--cor-sombra);
+            border: 2px solid var(--cor-texto-dourado); /* Borda dourada como um pergaminho */
+        }
+
+        .welcome-section h2 {
+            font-family: 'Cinzel Decorative', serif; /* Fonte "mágica" para o título */
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* Sombra no texto */
+        }
+
+        .welcome-section p {
+            font-family: 'Merriweather', serif; /* Fonte para o texto, com toque de pergaminho */
+            font-size: 1.2em;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Estilos do Rodapé */
+        footer {
+            background-color: var(--cor-rodape-fundo);
+            color: var(--cor-rodape-texto);
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 50px;
+            font-size: 0.9em;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        footer p {
+            font-style: italic; /* Citação em itálico */
+            margin: 0;
+            padding: 0 15px;
+        }
+
+        /* Responsividade Básica */
+        @media (max-width: 768px) {
+            header img {
+                max-width: 95%; /* Imagem um pouco maior em telas menores */
+            }
+
+            nav ul {
+                flex-direction: column; /* Menu empilhado em telas menores */
+                align-items: center; /* Centraliza os itens */
+            }
+
+            nav ul li {
+                width: 100%; /* Cada item ocupa a largura total */
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 10px 15px; /* Menor padding para itens do menu */
+                font-size: 1em;
+            }
+
+            .welcome-section {
+                padding: 30px 15px;
+                margin: 20px auto;
+            }
+
+            .welcome-section h2 {
+                font-size: 2.2em; /* Tamanho da fonte menor para o título de boas-vindas */
+            }
+
+            .welcome-section p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header img {
+                max-width: 100%;
+            }
+            .welcome-section h2 {
+                font-size: 1.8em;
+            }
+            .welcome-section p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Hogwarts_Castle_from_the_HP_film_sets.jpg/1280px-Hogwarts_Castle_from_the_HP_film_sets.jpg" alt="Castelo de Hogwarts">
+        <nav>
+            <ul>
+                <li><a href="#casas">Casas</a></li>
+                <li><a href="#feiticos">Feitiços</a></li>
+                <li><a href="#personagens">Personagens</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <h2>Bem-vindo ao Mundo Mágico de Harry Potter!</h2>
+            <p>
+                Entre pelos portões de Hogwarts e descubra um universo de magia, mistérios e aventuras. Aqui, a imaginação não tem limites e cada feitiço nos leva a um novo segredo. Prepare sua varinha e embarque nesta jornada inesquecível!
+            </p>
+            <p>
+                Explore as casas, aprenda sobre os feitiços mais incríveis, conheça os personagens que marcaram gerações e maravilhe-se com a galeria de momentos mágicos. O mundo bruxo espera por você!
+            </p>
+        </section>
+
+        <section id="casas" style="min-height: 400px; background-color: #E6E6FA; margin: 30px auto; max-width: 900px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h2>Casas de Hogwarts</h2>
+            <p style="text-align: center;">(Conteúdo sobre as casas Grifinória, Sonserina, Corvinal e Lufa-Lufa virá aqui.)</p>
+        </section>
+
+        <section id="feiticos" style="min-height: 400px; background-color: #F0F8FF; margin: 30px auto; max-width: 900px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h2>Feitiços e Encantamentos</h2>
+            <p style="text-align: center;">(Lista de feitiços e suas utilidades será adicionada aqui.)</p>
+        </section>
+
+        <section id="personagens" style="min-height: 400px; background-color: #FFFACD; margin: 30px auto; max-width: 900px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h2>Personagens Inesquecíveis</h2>
+            <p style="text-align: center;">(Biografia e detalhes dos personagens principais virão aqui.)</p>
+        </section>
+
+        <section id="galeria" style="min-height: 400px; background-color: #E0FFFF; margin: 30px auto; max-width: 900px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h2>Galeria Mágica</h2>
+            <p style="text-align: center;">(Imagens e arte do mundo de Harry Potter serão exibidas aqui.)</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>"Não vale a pena viver sonhando e esquecer de viver." - Alvo Dumbledore</p>
+    </footer>
+</body>
+</html>
