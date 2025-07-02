@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter - O Mundo Mágico</title>
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Harry_Potter_wordmark.svg/1200px-Harry_Potter_wordmark.svg.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --cor-vinho: #581845; /* Cor principal escura (vinho/roxo) */
+            --cor-azul-escuro: #2A2A72; /* Outra cor escura */
+            --cor-dourado: #FFD700;
+            --cor-terrosa: #A0522D; /* Sienna */
+            --cor-fundo-claro: #F8F8F8; /* Base para seções */
+            --cor-texto-claro: #FFFFFF;
+            --cor-texto-escuro: #333333;
+            --cor-sombra-suave: rgba(0, 0, 0, 0.2);
+            --cor-sombra-intensa: rgba(0, 0, 0, 0.4);
+
+            /* Cores das Casas */
+            --grifinoria-principal: #7F0000; /* Vermelho escarlate */
+            --grifinoria-secundaria: #FFD700; /* Dourado */
+            --sonserina-principal: #006400; /* Verde esmeralda */
+            --sonserina-secundaria: #C0C0C0; /* Prata */
+            --corvinal-principal: #00008B; /* Azul */
+            --corvinal-secundaria: #CD7F32; /* Bronze */
+            --lufa-lufa-principal: #FFD700; /* Amarelo */
+            --lufa-lufa-secundaria: #000000; /* Preto */
+
+            /* Cores do Rodapé */
+            --cor-rodape-fundo: #1C1C1C;
+            --cor-rodape-texto: #D3D3D3;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Rolagem suave para âncoras */
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo-claro);
+            color: var(--cor-texto-escuro);
+            line-height: 1.6;
+        }
+
+        /* Tipografia Base */
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--cor-vinho);
+            text-align: center;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--cor-vinho);
+            color: var(--cor-texto-claro);
+            padding: 2.5rem 0;
+            box-shadow: 0 5px 15px var(--cor-sombra-intensa);
+        }
+
+        header h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            color: var(--cor-dourado);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+        }
+
+        /* Navegação */
+        nav {
+            background-color: var(--cor-azul-escuro);
+            box-shadow: 0 2px 10px var(--cor-sombra-suave);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 18px 30px;
+            color: var(--cor-dourado);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.15rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--cor-vinho);
+            color: var(--cor-texto-claro);
+        }
+
+        nav ul li a i {
+            margin-right: 8px;
+        }
+
+        /* Layout Principal */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 25px;
+        }
+
+        .section-divider {
+            border: none;
+            height: 2px;
+            background-color: var(--cor-dourado);
+            margin: 60px auto;
+            width: 70%;
+            box-shadow: 0 2px 5px var(--cor-sombra-suave);
+        }
+
+        /* Seções Gerais */
+        section {
+            background-color: var(--cor-card-fundo);
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px var(--cor-sombra-suave);
+            border: 1px solid var(--cor-borda-card);
+        }
+
+        section h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--cor-dourado);
+            padding-bottom: 15px;
+        }
+
+        section p {
+            text-align: justify;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Hero Section (Introdução) */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to bottom, var(--cor-azul-escuro), var(--cor-fundo-claro));
+            border-radius: 12px;
+            box-shadow: 0 8px 20px var(--cor-sombra-intensa);
+        }
+
+        .hero-section img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 50%; /* Imagem redonda */
+            border: 5px solid var(--cor-dourado);
+            box-shadow: 0 10px 25px var(--cor-sombra-intensa);
+            margin-bottom: 30px;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .hero-section img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .hero-section .intro-text {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px var(--cor-sombra-suave);
+            max-width: 800px;
+            margin-top: 20px;
+            font-size: 1.15rem;
+            color: var(--cor-texto-escuro);
+        }
+
+        /* Houses Section */
+        .houses-section {
+            background-color: var(--cor-azul-escuro);
+        }
+
+        .houses-section h2 {
+            color: var(--cor-dourado);
+            border-bottom-color: var(--cor-dourado);
+        }
+
+        .houses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .house-card {
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            color: var(--cor-texto-claro);
+            box-shadow: 0 6px 15px var(--cor-sombra-suave);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden; /* Para o gradiente */
+            background-size: 200% 200%;
+        }
+
+        .house-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent);
+            background-size: 30px 30px;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .house-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px var(--cor-sombra-intensa);
+        }
+
+        .house-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        .house-card p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .house-card button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--cor-texto-claro);
+            color: var(--cor-texto-claro);
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            z-index: 2;
+            position: relative;
+        }
+
+        .house-card button:hover {
+            background-color: var(--cor-texto-claro);
+            color: var(--cor-vinho);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Cores das Casas */
+        .house-card.grifinoria {
+            background: linear-gradient(45deg, var(--grifinoria-principal), #A02020); /* Vermelho Escarlate */
+            color: var(--grifinoria-secundaria);
+        }
+        .house-card.sonserina {
+            background: linear-gradient(45deg, var(--sonserina-principal), #004d00); /* Verde Esmeralda */
+            color: var(--sonserina-secundaria);
+        }
+        .house-card.corvinal {
+            background: linear-gradient(45deg, var(--corvinal-principal), #00005C); /* Azul */
+            color: var(--corvinal-secundaria);
+        }
+        .house-card.lufa-lufa {
+            background: linear-gradient(45deg, var(--lufa-lufa-principal), #D4AF37); /* Amarelo (Dourado mais claro) */
+            color: var(--lufa-lufa-secundaria);
+        }
+
+        /* Characters Section */
+        .characters-section {
+            background-color: var(--cor-fundo-claro); /* Fundo cinza claro */
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .character-card {
+            background-color: var(--cor-card-fundo);
+            border: 1px solid var(--cor-borda-card);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--cor-sombra-suave);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px var(--cor-sombra-intensa);
+        }
+
+        .character-card img {
+            width: 100%;
+            height: 280px; /* Altura fixa para as imagens */
+            object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+            display: block;
+            border-bottom: 1px solid var(--cor-borda-card);
+        }
+
+        .character-card h4 {
+            font-size: 1.6rem;
+            color: var(--cor-azul-escuro);
+            margin: 15px 0 8px;
+        }
+
+        .character-card p {
+            font-size: 0.95rem;
+            color: #555;
+            padding: 0 15px 15px;
+            margin-bottom: 0;
+        }
+
+        /* Marauder's Map Section */
+        .marauders-map-section {
+            background-color: var(--cor-terrosa); /* Tom terroso/marrom */
+            color: var(--cor-texto-claro);
+        }
+
+        .marauders-map-section h2 {
+            color: var(--cor-dourado);
+            border-bottom-color: var(--cor-dourado);
+        }
+
+        .marauders-map-section p {
+            color: var(--cor-texto-claro);
+        }
+
+        .marauders-map-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px var(--cor-sombra-intensa);
+            margin: 30px auto;
+            display: block;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease;
+        }
+
+        .marauders-map-section img:hover {
+            transform: rotate(2deg) scale(1.02);
+            box-shadow: 0 15px 35px var(--cor-sombra-intensa);
+        }
+
+        /* Spellbook Section */
+        .spellbook-section {
+            background-color: #E0FFFF; /* Azul acinzentado claro (LightCyan) */
+            text-align: center;
+        }
+
+        .spellbook-section h2 {
+            color: var(--cor-vinho);
+            border-bottom-color: var(--cor-dourado);
+        }
+
+        .book-container {
+            margin-top: 30px;
+            position: relative;
+            display: inline-block; /* Para centralizar o livro */
+        }
+
+        .book-image {
+            max-width: 350px;
+            height: auto;
+            cursor: pointer;
+            box-shadow: 0 10px 20px var(--cor-sombra-suave);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px var(--cor-sombra-intensa);
+        }
+
+        .book-page {
+            background-color: #FFFACD; /* Lemon Chiffon - cor de papel */
+            border: 2px solid var(--cor-terrosa);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px var(--cor-sombra-intensa);
+            max-width: 600px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            display: none; /* Escondido por padrão */
+            position: relative;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+
+        .book-page.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .book-page h3 {
+            font-family: 'Caveat', cursive; /* Fonte manuscrita */
+            font-size: 2.5rem;
+            color: var(--cor-azul-escuro);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .book-page ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--cor-texto-escuro);
+        }
+
+        .book-page ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .book-page ul li::before {
+            content: '✨'; /* Ícone de estrela/brilho */
+            position: absolute;
+            left: 0;
+            color: var(--cor-dourado);
+        }
+
+        .book-page ul li.proibido {
+            color: #CC0000; /* Vermelho para feitiços proibidos */
+            font-weight: bold;
+        }
+        .book-page ul li.proibido::before {
+             content: '💀'; /* Ícone de caveira */
+             color: #CC0000;
+        }
+
+        .lock-icon {
+            font-size: 2.5rem;
+            cursor: pointer;
+            margin-top: 25px;
+            color: #8B4513; /* Cor de bronze/marrom para cadeado */
+            transition: color 0.3s ease;
+        }
+        .lock-icon.unlocked {
+            color: #32CD32; /* Verde brilhante quando destravado */
+        }
+        .lock-text {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--cor-rodape-fundo);
+            color: var(--cor-rodape-texto);
+            text-align: center;
+            padding: 1.8rem 0;
+            margin-top: 50px;
+            font-size: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--cor-card-fundo);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--cor-sombra-intensa);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-size: 2.5rem;
+            color: var(--cor-vinho);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--cor-dourado);
+            padding-bottom: 10px;
+        }
+
+        .modal-content p {
+            text-align: justify;
+            font-size: 1.1rem;
+            color: var(--cor-texto-escuro);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 2.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close-button:hover {
+            color: var(--cor-vinho);
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 3.5rem;
+            }
+            nav ul li a {
+                padding: 15px 20px;
+                font-size: 1.05rem;
+            }
+            section h2 {
+                font-size: 2.5rem;
+            }
+            .hero-section img {
+                max-width: 250px;
+            }
+            .house-card, .character-card, .varinha-card {
+                padding: 25px;
+            }
+            .book-image {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            nav ul li a {
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+            .container {
+                padding: 0 15px;
+            }
+            section {
+                padding: 30px;
+            }
+            section h2 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            section p {
+                font-size: 1rem;
+            }
+            .hero-section img {
+                max-width: 200px;
+            }
+            .hero-section .intro-text {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            .houses-grid, .characters-grid, .varinhas-grid {
+                grid-template-columns: 1fr;
+            }
+            .character-card img {
+                height: 220px;
+            }
+            .spellbook-section .book-image {
+                max-width: 280px;
+            }
+            .book-page {
+                padding: 20px;
+                max-width: 95%;
+            }
+            .book-page h3 {
+                font-size: 2rem;
+            }
+            .book-page ul li {
+                font-size: 1rem;
+            }
+            .lock-icon {
+                font-size: 2rem;
+            }
+            .modal-content {
+                padding: 25px;
+            }
+            .modal-content h2 {
+                font-size: 2rem;
+            }
+            .modal-content p {
+                font-size: 1rem;
+            }
+            .close-button {
+                font-size: 2rem;
+                top: 10px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.2rem;
+                padding: 1.5rem 0;
+            }
+            section {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+            section h2 {
+                font-size: 1.8rem;
+            }
+            .hero-section img {
+                max-width: 180px;
+            }
+            .house-card h3 {
+                font-size: 1.8rem;
+            }
+            .character-card h4 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Harry Potter</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i> Início</a></li>
+            <li><a href="#houses"><i class="fas fa-hat-wizard"></i> Casas</a></li>
+            <li><a href="#characters"><i class="fas fa-users"></i> Personagens</a></li>
+            <li><a href="#map"><i class="fas fa-map-marked-alt"></i> Mapa do Maroto</a></li>
+            <li><a href="#spellbook"><i class="fas fa-book-sparkles"></i> Feitiços</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section id="home" class="hero-section">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Harry_Potter_character_poster.jpg/220px-Harry_Potter_character_poster.jpg" alt="Harry Potter">
+            <div class="intro-text">
+                <p>
+                    Harry Potter é o protagonista de uma série de sete livros de fantasia escrita pela autora britânica J.K. Rowling. A história acompanha a vida de um jovem órfão que, em seu décimo primeiro aniversário, descobre ser um bruxo e é convidado a estudar na Escola de Magia e Bruxaria de Hogwarts. Lá, ele desvenda mistérios sobre seu passado e luta contra o bruxo das trevas Lord Voldemort, que assassinou seus pais quando ele era bebê e tentou matá-lo também. A saga é repleta de magia, amizade, aventura e a eterna batalha entre o bem e o mal, ambientada em um universo rico e fascinante.
+                </p>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="houses" class="houses-section">
+            <h2><i class="fas fa-hat-wizard"></i> As Quatro Casas de Hogwarts</h2>
+            <div class="houses-grid">
+                <div class="house-card grifinoria">
+                    <h3>Grifinória</h3>
+                    <p>Coragem, ousadia, nervosismo e cavalheirismo. Seus membros são conhecidos por sua bravura e determinação. Fundada por Godric Gryffindor.</p>
+                    <button onclick="openModal('grifinoria-modal')">Ver Detalhes</button>
+                </div>
+                <div class="house-card sonserina">
+                    <h3>Sonserina</h3>
+                    <p>Ambição, astúcia, liderança e desenvoltura. Muitos bruxos das trevas famosos vieram desta casa. Fundada por Salazar Slytherin.</p>
+                    <button onclick="openModal('sonserina-modal')">Ver Detalhes</button>
+                </div>
+                <div class="house-card corvinal">
+                    <h3>Corvinal</h3>
+                    <p>Inteligência, criatividade, aprendizado e sabedoria. Estudiosos e mentes afiadas encontram seu lar aqui. Fundada por Rowena Ravenclaw.</p>
+                    <button onclick="openModal('corvinal-modal')">Ver Detalhes</button>
+                </div>
+                <div class="house-card lufa-lufa">
+                    <h3>Lufa-Lufa</h3>
+                    <p>Dedicação, trabalho duro, paciência, lealdade e jogo limpo. Conhecidos por sua gentileza e justiça. Fundada por Helga Hufflepuff.</p>
+                    <button onclick="openModal('lufa-lufa-modal')">Ver Detalhes</button>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="characters" class="characters-section">
+            <h2><i class="fas fa-users"></i> Personagens Principais</h2>
+            <div class="characters-grid">
+                <div class="character-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg" alt="Harry Potter">
+                    <h4>Harry Potter</h4>
+                    <p>O "Menino Que Sobreviveu", protagonista da saga, conhecido por sua bravura e a cicatriz em forma de raio.</p>
+                </div>
+                <div class="character-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Hermione_Granger_poster.jpg/220px-Hermione_Granger_poster.jpg" alt="Hermione Granger">
+                    <h4>Hermione Granger</h4>
+                    <p>A bruxa mais brilhante de sua idade, leal e com uma sede insaciável por conhecimento.</p>
+                </div>
+                <div class="character-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Ron_Weasley_poster.jpg/220px-Ron_Weasley_poster.jpg" alt="Ron Weasley">
+                    <h4>Rony Weasley</h4>
+                    <p>O melhor amigo de Harry, conhecido por seu bom humor, lealdade e família bruxa tradicional.</p>
+                </div>
+                <div class="character-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Albus_Dumbledore.jpg" alt="Alvo Dumbledore">
+                    <h4>Alvo Dumbledore</h4>
+                    <p>Diretor de Hogwarts e um dos bruxos mais poderosos e sábios de todos os tempos. Mentor de Harry.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="map" class="marauders-map-section">
+            <h2><i class="fas fa-map-marked-alt"></i> O Mapa do Maroto</h2>
+            <p style="font-size: 1.5rem; text-align: center; font-style: italic; color: var(--cor-dourado); text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">"Juro solenemente não fazer nada de bom."</p>
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Marauder%27s_Map.png/800px-Marauder%27s_Map.png" alt="Mapa do Maroto aberto" title="Eu juro solenemente não fazer nada de bom.">
+            <p>
+                O Mapa do Maroto é um artefato mágico que revela todos os segredos do Castelo de Hogwarts e seus terrenos, incluindo a localização de cada pessoa dentro dele. Criado pelos quatro marotos (Aluado, Rabicho, Almofadinhas e Pontas), ele se tornou uma ferramenta indispensável para Harry Potter em suas aventuras. Para ativá-lo, basta tocar nele com a varinha e proferir a frase mágica.
+            </p>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="spellbook" class="spellbook-section">
+            <h2><i class="fas fa-book-sparkles"></i> Livro de Feitiços Interativo</h2>
+            <p>Clique no livro para abri-lo e descobrir seus segredos!</p>
+            <div class="book-container">
+                <img src="https://i.imgur.com/8Q6z3E5.png" alt="Livro de feitiços fechado" class="book-image" id="spellbook-image" onclick="openSpellbook()">
+                <div class="book-page" id="spellbook-page">
+                    <h3 id="spellbook-title">Feitiços Essenciais</h3>
+                    <ul id="common-spells">
+                        <li>Accio (Feitiço Convocatório)</li>
+                        <li>Alohomora (Feitiço de Abertura)</li>
+                        <li>Expelliarmus (Feitiço de Desarmamento)</li>
+                        <li>Lumos (Feitiço da Luz)</li>
+                        <li>Nox (Feitiço de Apagar Luz)</li>
+                        <li>Reparo (Feitiço de Reparação)</li>
+                        <li>Wingardium Leviosa (Feitiço de Levitação)</li>
+                    </ul>
+                    <ul id="forbidden-spells" style="display: none;">
+                        <li class="proibido">Avada Kedavra (Maldição da Morte)</li>
+                        <li class="proibido">Crucio (Maldição Cruciatus)</li>
+                        <li class="proibido">Imperio (Maldição Imperius)</li>
+                    </ul>
+                    <i class="fas fa-lock lock-icon" id="lock-icon" onclick="clickLock()"></i>
+                    <span class="lock-text" id="lock-status">Cadeado Trancado</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Página criada por Renan &copy; 2025</p>
+    </footer>
+
+    <div id="grifinoria-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('grifinoria-modal')">&times;</span>
+            <h2>Grifinória</h2>
+            <p>
+                Fundada por Godric Gryffindor, a Grifinória valoriza a coragem, ousadia, nervosismo e cavalheirismo. Seus membros são conhecidos por sua bravura em face do perigo e sua determinação em fazer o que é certo. O leão é seu animal símbolo, e suas cores são vermelho escarlate e dourado. Muitos heróis do mundo bruxo, incluindo Harry Potter, pertenceram a esta casa.
+            </p>
+        </div>
+    </div>
+
+    <div id="sonserina-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('sonserina-modal')">&times;</span>
+            <h2>Sonserina</h2>
+            <p>
+                Fundada por Salazar Slytherin, a Sonserina preza por ambição, astúcia, liderança e desenvoltura. Seus membros são frequentemente descritos como engenhosos e determinados, com um forte senso de auto-preservação. A serpente é seu animal símbolo, e suas cores são verde esmeralda e prata. Foi a casa de Lord Voldemort e de muitos bruxos das trevas.
+            </p>
+        </div>
+    </div>
+
+    <div id="corvinal-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('corvinal-modal')">&times;</span>
+            <h2>Corvinal</h2>
+            <p>
+                Fundada por Rowena Ravenclaw, a Corvinal é a casa dos inteligentes, criativos, sábios e com sede de aprendizado. Seus membros são acadêmicos e originais, valorizando a mente acima de tudo. A águia é seu animal símbolo, e suas cores são azul e bronze. Alunos desta casa são conhecidos por sua curiosidade e por sempre buscarem conhecimento.
+            </p>
+        </div>
+    </div>
+
+    <div id="lufa-lufa-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('lufa-lufa-modal')">&times;</span>
+            <h2>Lufa-Lufa</h2>
+            <p>
+                Fundada por Helga Hufflepuff, a Lufa-Lufa é conhecida por seus membros dedicados, trabalhadores, pacientes, leais e justos. Eles valorizam o jogo limpo e a amizade acima de qualquer outra coisa. O texugo é seu animal símbolo, e suas cores são amarelo e preto. É considerada a casa mais inclusiva de Hogwarts.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para Modais das Casas
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Fechar modal clicando fora do conteúdo
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        // JavaScript para Livro de Feitiços
+        const spellbookImage = document.getElementById('spellbook-image');
+        const spellbookPage = document.getElementById('spellbook-page');
+        const spellbookTitle = document.getElementById('spellbook-title');
+        const commonSpells = document.getElementById('common-spells');
+        const forbiddenSpells = document.getElementById('forbidden-spells');
+        const lockIcon = document.getElementById('lock-icon');
+        const lockStatus = document.getElementById('lock-status');
+        let lockClickCount = 0;
+        let isBookOpen = false;
+
+        function openSpellbook() {
+            if (!isBookOpen) {
+                spellbookImage.src = 'https://i.imgur.com/rN5hP70.png'; // Livro aberto
+                spellbookPage.classList.add('show');
+                isBookOpen = true;
+                // Resetar estado do cadeado ao reabrir o livro
+                lockClickCount = 0;
+                lockIcon.classList.remove('unlocked');
+                lockIcon.classList.remove('fa-unlock');
+                lockIcon.classList.add('fa-lock');
+                lockStatus.textContent = 'Cadeado Trancado';
+                spellbookTitle.textContent = 'Feitiços Essenciais';
+                commonSpells.style.display = 'block';
+                forbiddenSpells.style.display = 'none';
+            } else {
+                // Opcional: fechar livro ao clicar novamente na imagem se já estiver aberto
+                // spellbookImage.src = 'https://i.imgur.com/8Q6z3E5.png'; // Livro fechado
+                // spellbookPage.classList.remove('show');
+                // isBookOpen = false;
+            }
+        }
+
+        function clickLock() {
+            lockClickCount++;
+            if (lockClickCount >= 3) {
+                if (commonSpells.style.display !== 'none') {
+                    commonSpells.style.display = 'none';
+                    forbiddenSpells.style.display = 'block';
+                    spellbookTitle.textContent = 'Feitiços Proibidos';
+                    lockIcon.classList.remove('fa-lock');
+                    lockIcon.classList.add('fa-unlock');
+                    lockIcon.classList.add('unlocked');
+                    lockStatus.textContent = 'Cadeado Destravado!';
+                } else {
+                    // Opcional: ciclo de volta para feitiços essenciais ou manter proibidos
+                    // commonSpells.style.display = 'block';
+                    // forbiddenSpells.style.display = 'none';
+                    // spellbookTitle.textContent = 'Feitiços Essenciais';
+                    // lockIcon.classList.remove('fa-unlock');
+                    // lockIcon.classList.remove('unlocked');
+                    // lockIcon.classList.add('fa-lock');
+                    // lockStatus.textContent = 'Cadeado Trancado';
+                }
+                lockClickCount = 0; // Reinicia o contador após a ação
+            } else {
+                lockStatus.textContent = `Clique mais ${3 - lockClickCount} vez(es)`;
+            }
+        }
+
+        // JavaScript para Rolagem Suave e Ativar Link do Menu
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Remover 'active' de todos os links do menu
+                document.querySelectorAll('nav ul li a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                // Adicionar 'active' ao link clicado
+                this.classList.add('active');
+            });
+        });
+
+        // Opcional: Marcar o link do menu como ativo ao rolar a página
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            let currentSectionId = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - nav.offsetHeight; // Ajuste para a altura do menu fixo
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    currentSectionId = section.id;
+                }
+            });
+
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+             // Garante que o primeiro link "Início" esteja ativo se estiver no topo da página
+            if (window.pageYOffset === 0) {
+                 document.querySelector('nav ul li a[href="#home"]').classList.add('active');
+            }
+        });
+
+        // Define "Início" como ativo ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('nav ul li a[href="#home"]').classList.add('active');
+        });
+    </script>
+</body>
+</html>

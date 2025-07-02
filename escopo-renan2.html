@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter: Biografia e Personagens - O Mundo Bruxo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cor-cabecalho: #4B0082; /* Roxo escuro */
+            --cor-texto-cabecalho: #FFD700; /* Dourado */
+            --cor-fundo-principal: #F8F8F8; /* Cinza claro */
+            --cor-destaque-texto: #EEE8AA; /* Amarelo palha */
+            --cor-sombra: rgba(0, 0, 0, 0.2);
+            --cor-rodape-fundo: #1C1C1C; /* Preto quase */
+            --cor-rodape-texto: #D3D3D3; /* Cinza claro */
+            --cor-card-fundo: #ffffff; /* Branco para cards de personagem */
+            --cor-borda-card: #dcdcdc; /* Cinza claro para borda do card */
+
+            /* Cores do menu */
+            --cor-menu-fundo: #2A004D; /* Um roxo mais escuro que o cabeçalho */
+            --cor-menu-link: #FFD700; /* Dourado */
+            --cor-menu-link-hover: #FFFFFF; /* Branco ao passar o mouse */
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo-principal);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--cor-cabecalho);
+            color: var(--cor-texto-cabecalho);
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 4px 8px var(--cor-sombra);
+        }
+
+        header h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Estilos do Menu de Navegação */
+        nav {
+            background-color: var(--cor-menu-fundo);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky; /* Menu fixo ao rolar */
+            top: 0;
+            z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Itens do menu em linha */
+            justify-content: center; /* Centraliza os itens */
+            flex-wrap: wrap; /* Permite que os itens quebrem linha em telas pequenas */
+        }
+
+        nav ul li {
+            position: relative; /* Para futuros submenus se necessário */
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 25px;
+            color: var(--cor-menu-link);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active { /* Adicione 'active' para a página atual */
+            background-color: var(--cor-cabecalho); /* Cor de fundo do cabeçalho no hover */
+            color: var(--cor-menu-link-hover);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .secao {
+            background-color: var(--cor-card-fundo);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--cor-sombra);
+            border: 1px solid var(--cor-borda-card);
+        }
+
+        .secao h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.2rem;
+            color: var(--cor-cabecalho);
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--cor-texto-cabecalho);
+            padding-bottom: 10px;
+        }
+
+        .secao p {
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .personagens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .personagem-card {
+            background-color: #fff;
+            border: 1px solid var(--cor-borda-card);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .personagem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .personagem-card img {
+            width: 100%;
+            height: 250px; /* Altura fixa para as imagens dos personagens */
+            object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+            display: block;
+            border-bottom: 1px solid var(--cor-borda-card);
+        }
+
+        .personagem-info {
+            padding: 15px;
+        }
+
+        .personagem-info h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5rem;
+            color: var(--cor-cabecalho);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .personagem-info p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 10px;
+            text-align: left; /* Alinha o texto do personagem à esquerda */
+        }
+
+        .personagem-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .personagem-info ul li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer {
+            background-color: var(--cor-rodape-fundo);
+            color: var(--cor-rodape-texto);
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .secao h2 {
+                font-size: 1.8rem;
+            }
+            .personagens-grid {
+                grid-template-columns: 1fr; /* Uma coluna em telas menores */
+            }
+            nav ul {
+                flex-direction: column; /* Menu em coluna em telas menores */
+                align-items: center; /* Centraliza os itens na coluna */
+            }
+            nav ul li a {
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .secao {
+                padding: 20px;
+            }
+            .secao h2 {
+                font-size: 1.5rem;
+            }
+            .personagem-info h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>O Mundo Mágico de Harry Potter</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Início</a></li> <li><a href="varinhas.html">Varinhas</a></li>
+            <li><a href="mapa-maroto.html">Mapa do Maroto</a></li>
+            <li><a href="livro-feiticos.html">Livro de Feitiços</a></li>
+            <li><a href="game-casa.html">Game - Qual é sua casa?</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="secao">
+            <h2>A Saga Harry Potter: Uma Visão Geral</h2>
+            <p>
+                A série de livros Harry Potter, escrita pela aclamada autora britânica J.K. Rowling, transporta os leitores para um universo mágico repleto de mistérios, aventuras e uma eterna batalha entre o bem e o mal. A narrativa se inicia com Harry Potter, um órfão que vive uma vida miserável com seus tios e primo, até que em seu décimo primeiro aniversário, ele descobre que é um bruxo e foi aceito na prestigiada Escola de Magia e Bruxaria de Hogwarts.
+            </p>
+            <p>
+                Ao longo de sete livros, acompanhamos Harry e seus melhores amigos, Hermione Granger e Ron Weasley, enquanto eles navegam pelos desafios da adolescência, aprendem feitiços, desvendam segredos ancestrais e, acima de tudo, enfrentam a crescente ameaça de Lord Voldemort, o bruxo das trevas responsável pela morte dos pais de Harry e que busca retomar seu poder. A série explora temas profundos como amizade, amor, sacrifício, preconceito e a importância das escolhas. O impacto cultural de Harry Potter é imenso, transformando-se em um fenômeno global que transcende a literatura, abrangendo filmes, peças de teatro, jogos e parques temáticos.
+            </p>
+        </section>
+
+        <section class="secao">
+            <h2>Personagens Principais</h2>
+            <div class="personagens-grid">
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Harry+Potter" alt="Harry Potter">
+                    <div class="personagem-info">
+                        <h3>Harry Potter</h3>
+                        <p>O "Menino Que Sobreviveu", protagonista da saga. Conhecido por sua cicatriz em forma de raio e sua bravura inabalável. Membro da casa Grifinória.</p>
+                        <ul>
+                            <li>**Casa:** Grifinória</li>
+                            <li>**Melhores Amigos:** Hermione Granger, Ron Weasley</li>
+                            <li>**Inimigo Principal:** Lord Voldemort</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Hermione+Granger" alt="Hermione Granger">
+                    <div class="personagem-info">
+                        <h3>Hermione Granger</h3>
+                        <p>A bruxa mais brilhante de sua idade, com uma sede insaciável por conhecimento e uma lealdade inabalável aos amigos. Essencial para o trio.</p>
+                        <ul>
+                            <li>**Casa:** Grifinória</li>
+                            <li>**Habilidades:** Inteligência, lógica, vasto conhecimento</li>
+                            <li>**Animal de Estimação:** Bichento (gato)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Ron+Weasley" alt="Ron Weasley">
+                    <div class="personagem-info">
+                        <h3>Ron Weasley</h3>
+                        <p>O melhor amigo de Harry, conhecido por seu bom humor, lealdade e ocasional insegurança. Proveniente de uma grande família de bruxos.</p>
+                        <ul>
+                            <li>**Casa:** Grifinória</li>
+                            <li>**Família:** Os Weasley</li>
+                            <li>**Medos:** Aranhas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Alvo+Dumbledore" alt="Alvo Dumbledore">
+                    <div class="personagem-info">
+                        <h3>Alvo Dumbledore</h3>
+                        <p>Diretor de Hogwarts e um dos bruxos mais poderosos e sábios de todos os tempos. Mentor de Harry e figura chave na luta contra Voldemort.</p>
+                        <ul>
+                            <li>**Cargo:** Diretor de Hogwarts</li>
+                            <li>**Animais de Estimação:** Fawkes (Fênix)</li>
+                            <li>**Conhecido por:** Sabedoria, poder, mistério</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Severo+Snape" alt="Severo Snape">
+                    <div class="personagem-info">
+                        <h3>Severo Snape</h3>
+                        <p>Mestre de Poções e mais tarde Diretor de Hogwarts. Um personagem complexo com lealdades ambíguas e um passado trágico.</p>
+                        <ul>
+                            <li>**Cargo:** Professor de Poções, Diretor</li>
+                            <li>**Casa:** Sonserina</li>
+                            <li>**Características:** Astuto, sarcástico, leal (no final)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="personagem-card">
+                    <img src="https://via.placeholder.com/300x250?text=Lord+Voldemort" alt="Lord Voldemort">
+                    <div class="personagem-info">
+                        <h3>Lord Voldemort</h3>
+                        <p>O maior bruxo das trevas de todos os tempos, conhecido como Aquele-Que-Não-Deve-Ser-Nomeado. Buscava a imortalidade e o poder puro.</p>
+                        <ul>
+                            <li>**Nome Original:** Tom Riddle</li>
+                            <li>**Objetivo:** Imortalidade, poder, dominação</li>
+                            <li>**Fraqueza:** Amor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Página criada por Renan</p>
+    </footer>
+</body>
+</html>

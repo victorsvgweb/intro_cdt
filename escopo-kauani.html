@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Mundo Mágico de Harry Potter</title>
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Harry_Potter_wordmark.svg/1200px-Harry_Potter_wordmark.svg.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Variáveis CSS para a paleta de cores de Hogwarts */
+        :root {
+            --cor-vinho: #581845; /* Roxo/Vinho escuro */
+            --cor-dourado: #FFD700; /* Dourado vibrante */
+            --cor-azul-escuro: #2A2A72; /* Azul noturno */
+            --cor-verde-esmeralda: #006400; /* Verde escuro */
+            --cor-preto: #1A1A1A; /* Preto quase absoluto */
+            --cor-claro: #F8F8F8; /* Um cinza muito claro, quase branco */
+            --cor-pergaminho: #F0E6D2; /* Cor de pergaminho */
+
+            /* Cores das casas para os cards */
+            --grifinoria-fundo: #7F0000; /* Vermelho Escarlate */
+            --sonserina-fundo: #006400; /* Verde Esmeralda */
+            --corvinal-fundo: #00008B; /* Azul Marinho */
+            --lufa-lufa-fundo: #D4AF37; /* Amarelo Dourado */
+
+            --sombra-leve: rgba(0, 0, 0, 0.2);
+            --sombra-media: rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-pergaminho); /* Cor de base para a textura */
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Parchment_Texture.jpg/1920px-Parchment_Texture.jpg'); /* Textura de pergaminho */
+            background-size: cover;
+            background-attachment: fixed; /* Fixa o fundo ao rolar */
+            color: var(--cor-preto);
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+        }
+
+        /* Estilo para o contêiner principal para centralizar o conteúdo */
+        .container {
+            max-width: 1200px;
+            margin: 0px auto;
+            padding: 0 20px;
+        }
+
+        /* Título mágico no topo */
+        .magical-title {
+            background-color: var(--cor-vinho); /* Fundo vinho para o título */
+            color: var(--cor-dourado); /* Texto dourado */
+            text-align: center;
+            padding: 40px 20px;
+            font-family: 'Cinzel Decorative', serif; /* Fonte antiga/filme */
+            font-size: 4.5em;
+            text-shadow: 4px 4px 8px var(--sombra-media); /* Sombra para o efeito 3D */
+            margin-bottom: 30px;
+            border-bottom: 5px solid var(--cor-dourado); /* Linha dourada abaixo do título */
+        }
+
+        /* Estilo geral das seções */
+        section {
+            background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente para o conteúdo */
+            border-radius: 15px;
+            box-shadow: 0 10px 25px var(--sombra-media);
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--cor-pergaminho);
+        }
+
+        section h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.8em;
+            color: var(--cor-azul-escuro); /* Títulos das seções em azul escuro */
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--cor-dourado); /* Linha dourada abaixo dos títulos */
+            padding-bottom: 15px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            text-align: justify;
+            color: var(--cor-preto);
+        }
+
+        /* Seção "Bem-vindo(a) a Hogwarts" */
+        .welcome-to-hogwarts {
+            background-color: rgba(var(--cor-vinho), 0.9); /* Fundo vinho mais sólido para boas-vindas */
+            color: var(--cor-dourado);
+            text-align: center;
+            padding: 60px 40px;
+            border: 3px solid var(--cor-dourado); /* Borda mais grossa */
+        }
+        .welcome-to-hogwarts h2 {
+            color: var(--cor-dourado); /* Título em dourado */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            border-bottom-color: var(--cor-claro);
+        }
+        .welcome-to-hogwarts p {
+            color: var(--cor-claro); /* Texto em cor clara */
+            font-size: 1.2em;
+        }
+
+        /* Seção "Casas de Hogwarts" */
+        .houses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .house-card {
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            color: var(--cor-claro);
+            box-shadow: 0 5px 15px var(--sombra-media);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--cor-dourado); /* Borda dourada */
+        }
+
+        .house-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent);
+            background-size: 30px 30px;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .house-card:hover {
+            transform: translateY(-8px) scale(1.02); /* Efeito de levitação e leve aumento */
+            box-shadow: 0 15px 30px var(--sombra-media);
+            border-color: var(--cor-claro); /* Borda mais visível no hover */
+        }
+
+        .house-card h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        .house-card p {
+            font-size: 0.95em;
+            margin-bottom: 0;
+            color: var(--cor-claro);
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Cores de fundo para cada casa */
+        .house-card.grifinoria { background-color: var(--grifinoria-fundo); }
+        .house-card.sonserina { background-color: var(--sonserina-fundo); }
+        .house-card.corvinal { background-color: var(--corvinal-fundo); }
+        .house-card.lufa-lufa { background-color: var(--lufa-lufa-fundo); }
+
+        /* Seção "Itens Mágicos" */
+        .magic-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .item-card {
+            background-color: var(--cor-claro);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--sombra-leve);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--cor-dourado);
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px var(--sombra-media);
+        }
+
+        .item-card img {
+            max-width: 100%;
+            height: 150px; /* Altura fixa para as imagens dos itens */
+            object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid var(--cor-preto);
+        }
+
+        .item-card h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5em;
+            color: var(--cor-vinho);
+            margin-bottom: 0;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--cor-preto);
+            color: var(--cor-rodape-texto);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 0.9em;
+            border-top: 5px solid var(--cor-dourado); /* Linha dourada no topo do rodapé */
+        }
+
+        /* Botões/Links com efeitos hover mágicos (exemplo para um botão geral) */
+        .magic-button {
+            display: inline-block;
+            background-color: var(--cor-dourado);
+            color: var(--cor-vinho);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--cor-dourado);
+            box-shadow: 0 3px 8px var(--sombra-leve);
+            margin-top: 20px;
+        }
+
+        .magic-button:hover {
+            background-color: var(--cor-vinho);
+            color: var(--cor-dourado);
+            transform: translateY(-3px); /* Efeito de levitação */
+            box-shadow: 0 8px 15px var(--sombra-media); /* Sombra mais intensa */
+            border-color: var(--cor-claro);
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .magical-title {
+                font-size: 3.5em;
+                padding: 30px 15px;
+            }
+            section h2 {
+                font-size: 2.2em;
+            }
+            .house-card, .item-card {
+                padding: 20px;
+            }
+            .house-card h3, .item-card h3 {
+                font-size: 1.6em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .magical-title {
+                font-size: 2.8em;
+                padding: 25px 10px;
+            }
+            section {
+                padding: 30px 15px;
+                margin-bottom: 30px;
+            }
+            section h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            section p {
+                font-size: 1em;
+            }
+            .welcome-to-hogwarts {
+                padding: 40px 20px;
+            }
+            .welcome-to-hogwarts h2 {
+                font-size: 2em;
+            }
+            .welcome-to-hogwarts p {
+                font-size: 1.1em;
+            }
+            .houses-grid, .magic-items-grid {
+                grid-template-columns: 1fr; /* Colunas empilhadas em telas pequenas */
+                gap: 20px;
+            }
+            .house-card h3, .item-card h3 {
+                font-size: 1.4em;
+            }
+            .magic-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .magical-title {
+                font-size: 2em;
+                padding: 20px 5px;
+            }
+            section {
+                padding: 20px 10px;
+            }
+            section h2 {
+                font-size: 1.5em;
+            }
+            .welcome-to-hogwarts {
+                padding: 30px 15px;
+            }
+            .welcome-to-hogwarts h2 {
+                font-size: 1.8em;
+            }
+            .welcome-to-hogwarts p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="magical-title">
+        <h1>O Mundo de Harry Potter</h1>
+    </header>
+
+    <main class="container">
+        <section id="welcome" class="welcome-to-hogwarts">
+            <h2>Bem-vindo(a) a Hogwarts! <i class="fas fa-sparkles"></i></h2>
+            <p>
+                Cruze as barreiras do mundo trouxa e adentre os sagrados terrenos da Escola de Magia e Bruxaria de Hogwarts. Prepare-se para uma jornada onde feitiços são lançados, mistérios são desvendados e amizades duradouras são forjadas. A magia o(a) espera em cada corredor, cada aula e em cada cantinho deste castelo ancestral.
+            </p>
+            <p>
+                Sinta a atmosfera vibrante, ouça os ecos de risadas e encantamentos, e deixe-se envolver pela essência de um lugar onde o extraordinário é a norma. Seja bem-vindo(a) ao lar!
+            </p>
+            <a href="#houses" class="magic-button">Descubra sua Casa!</a>
+        </section>
+
+        <section id="houses">
+            <h2>Casas de Hogwarts <i class="fas fa-hat-wizard"></i></h2>
+            <div class="houses-grid">
+                <div class="house-card grifinoria">
+                    <h3>Grifinória</h3>
+                    <p>Coragem, ousadia, nervosismo e cavalheirismo. Lar dos bravos e determinados, fundado por Godric Gryffindor.</p>
+                </div>
+                <div class="house-card sonserina">
+                    <h3>Sonserina</h3>
+                    <p>Ambição, astúcia, liderança e desenvoltura. Para aqueles que buscam grandeza, fundada por Salazar Slytherin.</p>
+                </div>
+                <div class="house-card corvinal">
+                    <h3>Corvinal</h3>
+                    <p>Inteligência, criatividade, aprendizado e sabedoria. A casa dos sábios e curiosos, fundada por Rowena Ravenclaw.</p>
+                </div>
+                <div class="house-card lufa-lufa">
+                    <h3>Lufa-Lufa</h3>
+                    <p>Dedicação, trabalho duro, paciência, lealdade e jogo limpo. A casa dos justos e gentis, fundada por Helga Hufflepuff.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>Sobre o Mundo Mágico <i class="fas fa-book-open"></i></h2>
+            <p>
+                O universo de Harry Potter, criado por J.K. Rowling, é um reino secreto escondido dentro do nosso próprio mundo, acessível apenas a bruxos e bruxas. É um lugar onde objetos se movem sozinhos, poções transformam a realidade e criaturas fantásticas coexistem com a humanidade. Este mundo possui sua própria economia, política, e história rica em lendas e batalhas épicas.
+            </p>
+            <p>
+                A magia é uma força inata em alguns indivíduos, manifestada através do uso de varinhas para canalizar feitiços complexos. A sociedade bruxa mantém-se oculta dos "trouxas" (pessoas não-mágicas) por meio de um complexo sistema de leis e encantamentos de ocultação, garantindo a paz entre os dois mundos.
+            </p>
+        </section>
+
+        <section id="magic-items">
+            <h2>Itens Mágicos Essenciais <i class="fas fa-wand-magic-sparkles"></i></h2>
+            <div class="magic-items-grid">
+                <div class="item-card">
+                    <img src="https://via.placeholder.com/200x200?text=Varinha+Mágica" alt="Varinha Mágica">
+                    <h3>Varinha Mágica</h3>
+                    <p>O instrumento fundamental de todo bruxo, canalizando e focando a magia.</p>
+                </div>
+                <div class="item-card">
+                    <img src="https://via.placeholder.com/200x200?text=Coruja+Mensageira" alt="Coruja Mensageira">
+                    <h3>Coruja Mensageira</h3>
+                    <p>Fiéis companheiras e portadoras de mensagens entre bruxos e trouxas.</p>
+                </div>
+                <div class="item-card">
+                    <img src="https://via.placeholder.com/200x200?text=Chapéu+Seletor" alt="Chapéu Seletor">
+                    <h3>Chapéu Seletor</h3>
+                    <p>Um artefato mágico que determina a qual casa de Hogwarts cada aluno pertence.</p>
+                </div>
+                <div class="item-card">
+                    <img src="https://via.placeholder.com/200x200?text=Pomo+de+Ouro" alt="Pomo de Ouro">
+                    <h3>Pomo de Ouro</h3>
+                    <p>A bola mais importante do Quadribol, cuja captura encerra o jogo.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Desenvolvido com Magia e Carinho para fãs de Harry Potter <i class="fas fa-heart"></i></p>
+    </footer>
+</body>
+</html>
